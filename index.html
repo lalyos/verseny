@@ -81,37 +81,24 @@
   <div id="app">
     <v-app top-navbar left-sidebar>
       <header>
-        <v-toolbar>
-          <v-toolbar-logo>Pannon Cup</v-toolbar-logo>
-          <v-toolbar-items>
-            <v-toolbar-item>
-              
-            </v-toolbar-item>
-          </v-toolbar-items>
-        </v-toolbar>
+        <v-toolbar class="green">
+  <v-toolbar-side-icon />
+  <v-toolbar-title class="hidden-sm-and-down">Toolbar</v-toolbar-title>
+  <v-spacer />
+  <v-btn icon dark>
+    <v-icon>account_circle</v-icon>
+  </v-btn>
+  <v-btn icon dark>
+    <v-icon>favorite</v-icon>
+  </v-btn>
+  <v-btn icon dark>
+    <v-icon>more_vert</v-icon>
+  </v-btn>
+</v-toolbar>
       </header>
       <main>
         <v-content>
-          <v-container :fluid="true">
-              <v-tabs id="mobile-tabs-5" grow>
-                  <v-tab-item href="#mobile-tabs-5-1" slot="activators">
-                    <v-icon>forward_5</v-icon>
-                  </v-tab-item>
-                  <v-tab-item href="#mobile-tabs-5-2" slot="activators">
-                    <v-icon>list</v-icon>
-                  </v-tab-item>
-                  <v-tab-item href="#mobile-tabs-5-3" slot="activators">
-                    <v-icon>hourglass_empty</v-icon>
-                  </v-tab-item>
-                  <v-tab-item href="#mobile-tabs-5-4" slot="activators">
-                    <v-icon>schedule</v-icon>
-                  </v-tab-item>
-
-                  <v-tab-content slot="content" id="mobile-tabs-5-1">
-                    mobile-tabs-5-1
-                  </v-tab-content>
-                  <v-tab-content slot="content" id="mobile-tabs-5-2">
-                    counter-2
+         
                   <div id="clocks-container">
 
 	                </div>
@@ -124,7 +111,7 @@
 				size: 'big', // ez lehet 'big' vagy 'default'
 				clock: '', // minden esetben '' kell legyen
 				counter: 0, // a timetable hanyadik elemetol kezdjen el szamolni
-				startDate: new Date("February 18, 2017 01:45"), // mikortol induljon az ora
+				startDate: new Date("February 18, 2017 02:15"), // mikortol induljon az ora
 				timeTable : [
 						{time: 5, text: 'Qualif-1'},
 						{time: 5, text: 'Pause'},
@@ -220,15 +207,7 @@
 
 	</script>
 
-                  </v-tab-content>
-                  <v-tab-content slot="content" id="mobile-tabs-5-3">
-                    mobile-tabs-5-3
-                  </v-tab-content>
-                  <v-tab-content slot="content" id="mobile-tabs-5-4">
-                    mobile-tabs-5-4
-                  </v-tab-content>
-              </v-tabs>
-          </v-container>
+                  
         </v-content>
       </main>
     </v-app>
