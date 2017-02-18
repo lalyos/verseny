@@ -112,23 +112,25 @@
 				size: 'big', // ez lehet 'big' vagy 'default'
 				clock: '', // minden esetben '' kell legyen
 				counter: 0, // a timetable hanyadik elemetol kezdjen el szamolni
-				startDate: new Date("February 18, 2017 04:15"), // mikortol induljon az ora
+				startDate: new Date("February 18, 2017 08:00"), // mikortol induljon az ora
 				timeTable : [
-						{time: 5, text: 'Qualif-1'},
-						{time: 5, text: 'Pause'},
-						{time: 5, text: 'Qualif-2'},
-						{time: 5, text: 'Pause'},
-						{time: 5, text: 'Qualif-3'},
-						{time: 5, text: 'Pause'},
-						{time: 5, text: 'Qualif-4'},
-						{time: 5, text: 'Pause'},
-						{time: 5, text: 'Finals'}
+						{time: 3600, text: 'Registration'},
+						{time: 1800, text: 'Pause'},
+						{time: 7200, text: 'Qualif-1'},
+						{time: 1800, text: 'Pause'},
+						{time: 7200, text: 'Qualif-2'},
+						{time: 1800, text: 'Pause'},
+						{time: 7200, text: 'Qualif-3'},
+						{time: 900, text: 'Pause'},
+						{time: 7200, text: 'Qualif-4'},
+						{time: 900, text: 'Pause'},
+						{time: 10000, text: 'Finals'}
 					]
 			}
 		];
 		var dif = (clocks[0].startDate.getTime() - now.getTime()) / 1000;
 
-		clocks[0].timeTable.unshift({time: dif, text: 'Registration'}); // elso szoveg
+		clocks[0].timeTable.unshift({time: dif, text: 'Before start'}); // elso szoveg
 
 		function startClock(clock, date) {
 				(function loop() {
