@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pannon Cup</title>
+  <!-- vuetify -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
+  <link href="styles.css" rel="stylesheet" type="text/css">
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+  <script src="https://unpkg.com/vuetify/dist/vuetify.min.js"></script>
+
+  <!-- flipclock -->
+  <link rel="stylesheet" href="https://cdn.rawgit.com/objectivehtml/FlipClock/17d9f3f1/compiled/flipclock.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://cdn.rawgit.com/objectivehtml/FlipClock/17d9f3f1/compiled/flipclock.js"></script>
+
+</head>
+<body>
+  <style>
+	body{
+		font-family: 'Roboto', sans-serif;
+	}
+
+	/** big clock **/
+	.big.message{
+		margin: 0 auto !important;
+		width: 580px;
+		text-align: center;
+		font-size: 120px;
+		margin-bottom: 30px !important; /* ora alatti tavolsag */
+	}
+	.big.flip-clock-wrapper{
+		margin: 0 auto !important;
+		width: 580px;
+	}
+	.big.flip-clock-wrapper ul li a div div.inn {
+		font-size: 220px; /* szoveg meret */ 
+	}
+
+	.big.flip-clock-wrapper ul {
+		width: 130px; /* szovegdoboz meretei */
+		height: 183px;
+	}
+
+	.big.flip-clock-wrapper ul li {
+		line-height: 170px; /* szoveg igazitas */ 
+	}
+
+	.big.flip-clock-wrapper ul li a div.up:after {
+		top: 91px; /* az elvalasztovonal pozicioja */
+	}	
+	
+	.big .flip-clock-divider{
+		top: 32px; /* kettospont pozicioja */
+		height: 127px; /* a kettospont ket pontja kozotti tavolsag */
+	}
+	/** big clock **/
+
+	/** default clock **/
+	.message{
+		margin: 0 auto !important;
+		width: 380px;
+		text-align: center;
+		margin-bottom: 30px !important;
+		margin-top: 10px !important;
+	}
+	.flip-clock-wrapper{
+		margin: 0 auto !important;
+		width: 300px;
+	}
+	/** default clock **/
+
+
+	.flip-clock-divider .flip-clock-label{
+		display: none;
+	}
+
+	</style>
+
+  <div id="app">
+    <v-app top-navbar left-sidebar>
+      <header>
+        <v-toolbar>
+          <v-toolbar-logo>Pannon Cup</v-toolbar-logo>
+          <v-toolbar-items>
+            <v-toolbar-item>
+              
+            </v-toolbar-item>
+          </v-toolbar-items>
+        </v-toolbar>
+      </header>
+      <main>
+        <v-content>
+          <v-container :fluid="true">
+              <v-tabs id="mobile-tabs-5" grow>
+                  <v-tab-item href="#mobile-tabs-5-1" slot="activators">
+                    <v-icon>forward_5</v-icon>
+                  </v-tab-item>
+                  <v-tab-item href="#mobile-tabs-5-2" slot="activators">
+                    <v-icon>list</v-icon>
+                  </v-tab-item>
+                  <v-tab-item href="#mobile-tabs-5-3" slot="activators">
+                    <v-icon>hourglass_empty</v-icon>
+                  </v-tab-item>
+                  <v-tab-item href="#mobile-tabs-5-4" slot="activators">
+                    <v-icon>schedule</v-icon>
+                  </v-tab-item>
+
+                  <v-tab-content slot="content" id="mobile-tabs-5-1">
+                    mobile-tabs-5-1
+                  </v-tab-content>
+                  <v-tab-content slot="content" id="mobile-tabs-5-2">
+                    counter-2
+                  <div id="clocks-container">
+
+	                </div>
+                  	<script type="text/javascript">
+
+		var now = new Date();
+
+		var clocks = [
+			{
+				size: 'big', // ez lehet 'big' vagy 'default'
+				clock: '', // minden esetben '' kell legyen
+				counter: 0, // a timetable hanyadik elemetol kezdjen el szamolni
+				startDate: new Date("February 18, 2017 01:09"), // mikortol induljon az ora
+				timeTable : [
+						{time: 5, text: 'Qualif-1'},
+						{time: 5, text: 'Pause'},
+						{time: 5, text: 'Qualif-2'},
+						{time: 5, text: 'Pause'},
+						{time: 5, text: 'Qualif-3'},
+						{time: 5, text: 'Pause'},
+						{time: 5, text: 'Qualif-4'},
+						{time: 5, text: 'Pause'},
+						{time: 5, text: 'Finals'}
+					]
+			}
+		];
+		var dif = (clocks[0].startDate.getTime() - now.getTime()) / 1000;
+
+		clocks[0].timeTable.unshift({time: dif, text: 'Registration'}); // elso szoveg
+
+		function startClock(clock, date) {
+				(function loop() {
+						var now = new Date();
+						if (now.getDate() === date.getDate() && now.getHours() === date.getHours() && now.getMinutes() === date.getMinutes()) {
+								clock.start();
+						}
+						now = new Date();
+						var delay = 60000 - (now % 60000);
+						setTimeout(loop, delay);
+				})();
+		}
+
+		function initClock(clocks){
+			$(clocks).each(function( index ) {
+				$("#clocks-container").append(
+					'<div class="clock ' + this.size + '" id="clock-' + index + '"></div>' +
+					'<div class="message ' + this.size + '" id="message-' + index + '"></div>' +
+					//'<div class="clock default" id="sub-clock-' + index + '"></div>' +
+					'<div class="message default" id="sub-message-' + index + '"></div>'					
+				);
+				var clock = this.clock;
+				var timeTable = this.timeTable;
+				var counter = this.counter;
+				var startDate = now;
+
+				var subClock;
+
+				$('#message-' + index).html(timeTable[counter].text);
+				clock = $('#clock-' + index).FlipClock(timeTable[counter].time, {
+						countdown: true,
+								clockFace: 'MinuteCounter',
+						autoStart: false,
+						callbacks: {
+							stop: function() {
+								counter++
+								if(timeTable.length > counter){
+									setTimeout(function(){
+										clock.setTime(timeTable[counter].time);
+										clock.start();
+										$('#message-'+index).html(timeTable[counter].text);
+										if(subClock && timeTable[counter+1]){
+											//subClock.setTime(timeTable[counter+1].time);
+											$('#sub-message-' + index).html("next: " + timeTable[counter+1].text);
+										}else{
+											//$('#sub-clock-' + index).remove();
+											$('#sub-message-' + index).remove();
+										}
+									}, 1000); // 1 masodperc amig lemegy az utolso animacio, azt meg kell varni, mielott allitunk az oran
+								}
+							}
+						}
+					});
+
+				var subIndex = index+1;
+				var subCounter = counter+1;
+
+				// FIRST 
+				if(timeTable[subCounter]){
+					$('#sub-message-' + index).html("next: " + timeTable[subCounter].text);
+					subClock = $('#sub-clock-' + index).FlipClock(timeTable[subCounter].time, {
+							countdown: true,
+									clockFace: 'MinuteCounter',
+							autoStart: false
+						});
+				}
+
+
+				startClock(clock, startDate);
+
+			});
+		}
+
+		$(document).ready(function() {
+			initClock(clocks);
+		});
+
+	</script>
+
+                  </v-tab-content>
+                  <v-tab-content slot="content" id="mobile-tabs-5-3">
+                    mobile-tabs-5-3
+                  </v-tab-content>
+                  <v-tab-content slot="content" id="mobile-tabs-5-4">
+                    mobile-tabs-5-4
+                  </v-tab-content>
+              </v-tabs>
+          </v-container>
+        </v-content>
+      </main>
+    </v-app>
+  </div>
+
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuex/dist/vuex.js"></script>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+
+      data: {
+        items: [
+          {text: 'Program', href: 'javascript:;', icon: 'assignment'},
+          {text: 'Timers', href: 'javascript:;', icon: 'alarm'},
+          {text: 'Pause', href: 'javascript:;', icon: 'hourglass_empty'},
+          {text: 'Participants', href: 'javascript:;', icon: 'people'}
+        ],
+        item: {
+          text: 'Get Started'
+        }
+      }
+    })
+  </script>
+</body>
+</html>
